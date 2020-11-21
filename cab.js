@@ -1,4 +1,5 @@
 function cab(){
+	$('.caberror').hide();
 	console.log('yayyyyy');
 	var pick = $("#pickup").val();
 	var drop = $("#drop").val();
@@ -16,28 +17,33 @@ function disable() {
     var x = $(".pickup").val();
     var y=$(".drop option[value='"+x+"']").val();
     $(".drop option[value='"+x+"']").attr("disabled", "disabled").siblings().removeAttr("disabled");
+    $('.pickerror').hide();
 
 }
 function dis() {
     var x = $(".drop").val();
     $(".pickup option[value='"+x+"']").attr("disabled", "disabled").siblings().removeAttr("disabled");
+    $('.droperror').hide();
    
 }
+$('.pickerror').hide();
+$('.droperror').hide();
+$('.caberror').hide();
 function calculate(){
 	var pickup = $("#pickup").val();
 	var destination = $("#drop").val();
 	var cedcab = $("#cabtype").val();
 	var weights = $("#luggage").val();
 	if(pickup=='Current-location'){
-		alert("Please select your pickup location.!");
+		$('.pickerror').html('* Please select your pickup location');
 		return;
 	}
 	if(destination=='Enter Drop for ride estimate'){
-		alert("Please select your drop location.!");
+		$('.droperror').html('* Please select your drop location');
 		return;
 	}
 	if(cedcab=="Select-Cab-Type"){
-		alert("Select your cab");
+		$('.caberror').html('* Please select your cab');
 		return;
 	}
 	if(weights==''){
